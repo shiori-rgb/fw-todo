@@ -16,4 +16,20 @@
         FROM todos
         ORDER BY due_date ASC
     </select>
+
+    <insert id="insert" parameterType="com.example.todoapp.Todo">
+        INSERT INTO todos (
+            title,
+            detail,
+            category,
+            priority,
+            due_date
+        ) VALUES (
+            #{title},
+            #{detail},
+            #{category},
+            #{priority},
+            #{dueDate}
+        )
+    </insert>
 </mapper>

@@ -3,6 +3,9 @@ package com.example.todoapp;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -26,5 +29,30 @@ public class HomeController {
         List<Todo> todos = todoMapper.findAll();
         model.addAttribute("todos", todos);
         return "todos";
+    }
+
+    @GetMapping("/todos/new")
+    public String create(Model model) {
+        model.addAttribute("todo", new Todo());
+        return "create";
+    }
+
+    @PostMapping("/todos/confirm")
+    public String confirm(@ModelAttribute Todo todo, Model model) {
+        model.addAttribute("todo", todo);
+        return "create-confirm";
+    }
+
+    @PostMapping("/todos/new")
+    public String rewrite(@ModelAttribute Todo todo, Model model) {
+        model.addAttribute("todo", todo);
+        return "create";
+    }
+
+    @PostMapping("/todos")
+    public String store(@ModelAttribute Todo todo, RedirectAttributes redirectAttributes) {
+        todoMapper.insert(todo);
+        redirectAttributes.addFlashAttribute("message", "登録しました");
+        return "redirect:/todos";
     }
 }
