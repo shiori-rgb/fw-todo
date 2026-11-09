@@ -14,4 +14,6 @@ public interface TodoMapper {
     int insert(Todo todo);
 
     int update(Todo todo);
+
+    int deleteById(Long id);
 }

@@ -57,4 +57,9 @@
             completed = #{completed}
         WHERE id = #{id}
     </update>
+
+    <delete id="deleteById" parameterType="long">
+        DELETE FROM todos
+        WHERE id = #{id}
+    </delete>
 </mapper>
