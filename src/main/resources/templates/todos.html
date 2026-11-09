@@ -23,6 +23,7 @@
                 <th>優先度</th>
                 <th>期限</th>
                 <th>状態</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
@@ -32,6 +33,7 @@
                 <td th:text="${todo.priority == 1 ? '高' : (todo.priority == 2 ? '中' : '低')}">優先度</td>
                 <td th:text="${todo.dueDate}">期限</td>
                 <td th:text="${todo.completed ? '完了' : '未完了'}">状態</td>
+                <td><a class="link" th:href="@{/todos/{id}/edit(id=${todo.id})}">編集</a></td>
             </tr>
             </tbody>
         </table>

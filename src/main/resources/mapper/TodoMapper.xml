@@ -17,6 +17,20 @@
         ORDER BY due_date ASC
     </select>
 
+    <select id="findById" parameterType="long" resultType="com.example.todoapp.Todo">
+        SELECT id,
+               title,
+               detail,
+               category,
+               priority,
+               due_date,
+               completed,
+               created_at,
+               updated_at
+        FROM todos
+        WHERE id = #{id}
+    </select>
+
     <insert id="insert" parameterType="com.example.todoapp.Todo">
         INSERT INTO todos (
             title,
@@ -32,4 +46,15 @@
             #{dueDate}
         )
     </insert>
+
+    <update id="update" parameterType="com.example.todoapp.Todo">
+        UPDATE todos
+        SET title = #{title},
+            detail = #{detail},
+            category = #{category},
+            priority = #{priority},
+            due_date = #{dueDate},
+            completed = #{completed}
+        WHERE id = #{id}
+    </update>
 </mapper>
