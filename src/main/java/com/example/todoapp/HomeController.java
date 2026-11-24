@@ -40,7 +40,7 @@ public class HomeController {
         if (!"desc".equals(order)) {
             order = "asc";
         }
-        List<Todo> todos = todoService.search(keyword, category, order);
+        List<Todo> todos = todoService.search(keyword, category, order, null, null);
         model.addAttribute("todos", todos);
         model.addAttribute("keyword", keyword);
         model.addAttribute("category", category);
